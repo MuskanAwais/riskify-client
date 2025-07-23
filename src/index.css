@@ -1,0 +1,983 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Force override for risk badges - use flexbox for perfect centering */
+.risk-badge-override,
+span[style*="background-color"]:not([class]) {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 10px !important;
+  color: #ffffff !important;
+  font-weight: 500 !important;
+  width: 70px !important;
+  height: 24px !important;
+  border-radius: 4px !important;
+  font-family: 'Inter', Arial, sans-serif !important;
+  line-height: 1 !important;
+  white-space: nowrap !important;
+  box-sizing: border-box !important;
+  text-align: center !important;
+}
+
+/* Center all text in risk matrix tables - FORCE FOR PDF CAPTURE */
+table td,
+table th {
+  text-align: center !important;
+}
+
+/* Extra strong centering for PDF capture */
+.print-page table td,
+.print-page table th {
+  text-align: center !important;
+  vertical-align: middle !important;
+}
+
+/* Force center for all table content during PDF capture */
+[data-component-name="risk-matrix"] td,
+[data-component-name="risk-matrix"] th,
+.risk-matrix td,
+.risk-matrix th {
+  text-align: center !important;
+  vertical-align: middle !important;
+}
+
+/* PDF-specific table centering */
+.page-break table td,
+.page-break table th {
+  text-align: center !important;
+  vertical-align: middle !important;
+}
+
+/* Ultra-strong PDF centering for risk matrix cells */
+div[style*="backgroundColor"] {
+  text-align: center !important;
+  vertical-align: middle !important;
+  line-height: 1 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* Work activities table specific styling */
+.work-activities-table td,
+.work-activities-table th {
+  vertical-align: top !important;
+  padding-top: 6px !important;
+}
+
+/* Plant equipment table specific styling */
+.plant-equipment-table td,
+.plant-equipment-table th {
+  vertical-align: top !important;
+  padding-top: 6px !important;
+}
+
+/* Badge alignment fix for all tables */
+table td span[style*="background-color"],
+table td div[style*="background-color"] {
+  vertical-align: top !important;
+  margin-top: 0 !important;
+  display: inline-block !important;
+  text-align: center !important;
+}
+
+/* Risk matrix color cell centering */
+.risk-matrix-table td[style*="background-color"] {
+  text-align: center !important;
+  vertical-align: middle !important;
+}
+
+.risk-matrix-table td[style*="background-color"] div {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  height: 100% !important;
+  text-align: center !important;
+}
+
+/* Page content styling */
+.page-content {
+  background-color: white;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+/* Watermark styling */
+.page-content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 50px,
+    rgba(0,0,0,0.02) 50px,
+    rgba(0,0,0,0.02) 100px
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Enhanced table styling for professional appearance */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 11px;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+table td,
+table th {
+  border: 1px solid #e5e7eb;
+  padding: 8px;
+  text-align: left;
+  vertical-align: top;
+}
+
+table th {
+  background-color: #f9fafb;
+  font-weight: 600;
+  color: #1f2937;
+  text-align: center;
+}
+
+/* Signature styling */
+.signature-field {
+  font-family: 'Dancing Script', cursive;
+  font-size: 18px;
+  font-weight: 600;
+  border-bottom: 2px solid #374151;
+  min-height: 40px;
+  padding: 8px 12px;
+  color: #1f2937;
+}
+
+/* Company logo placeholder */
+.logo-placeholder {
+  border: 2px dashed #d1d5db;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 11px;
+  color: #9ca3af;
+  background-color: #f9fafb;
+}
+
+/* Header styling consistency */
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 40px;
+  position: relative;
+  z-index: 10;
+}
+
+.page-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #1f2937;
+  font-family: 'Inter', system-ui, sans-serif;
+  line-height: 1.2;
+}
+
+.company-info {
+  font-size: 13px;
+  line-height: 18px;
+  color: #6b7280;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+.company-info .company-name {
+  font-weight: 500;
+  color: #374151;
+}
+
+/* Card styling */
+.info-card {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 24px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+.info-card h2,
+.info-card h3 {
+  color: #1f2937;
+  margin-bottom: 16px;
+}
+
+.info-card h2 {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.info-card h3 {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+/* Grid layouts */
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.info-grid-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.info-grid-item label {
+  font-size: 12px;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 4px;
+}
+
+.info-grid-item .value {
+  font-size: 14px;
+  color: #1f2937;
+}
+
+/* Force override for risk badges - use flexbox for perfect centering */
+.risk-badge-override,
+span[style*="background-color"]:not([class]) {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 10px !important;
+  color: #ffffff !important;
+  font-weight: 500 !important;
+  width: 70px !important;
+  height: 24px !important;
+  border-radius: 4px !important;
+  font-family: 'Inter', Arial, sans-serif !important;
+  line-height: 1 !important;
+  white-space: nowrap !important;
+  box-sizing: border-box !important;
+  text-align: center !important;
+}
+
+/* Center all text in risk matrix tables - FORCE FOR PDF CAPTURE */
+table td,
+table th {
+  text-align: center !important;
+}
+
+/* Custom cursive font for signatures */
+.font-cursive {
+  font-family: 'Dancing Script', cursive;
+}
+
+.signature-text {
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1f2937;
+  padding: 0.5rem 1rem;
+  border-bottom: 2px solid #374151;
+  min-height: 3rem;
+  display: flex;
+  align-items: center;
+}
+
+:root {
+  --riskify-green: #2c5530;
+  --riskify-green-light: #4a7c59;
+  --riskify-green-dark: #1a3d20;
+}
+
+/* Mobile and Tablet Optimizations */
+@layer base {
+  html {
+    font-size: 16px;
+  }
+  
+  /* Improved touch targets for mobile */
+  @media (max-width: 768px) {
+    button, a, input, select, textarea {
+      min-height: 44px;
+    }
+    
+    /* Better spacing on mobile */
+    .container {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+    
+    /* Responsive text sizes */
+    h1 { font-size: 1.5rem; }
+    h2 { font-size: 1.25rem; }
+    h3 { font-size: 1.125rem; }
+    
+    /* Mobile table improvements */
+    table {
+      font-size: 0.875rem;
+    }
+    
+    /* Better form spacing */
+    .space-y-4 > * + * {
+      margin-top: 1.5rem;
+    }
+  }
+  
+  /* Tablet optimizations */
+  @media (min-width: 768px) and (max-width: 1024px) {
+    .container {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+    
+    /* Better grid layouts for tablets */
+    .grid-cols-2 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .grid-cols-3 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  /* Improved focus states for accessibility */
+  button:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible {
+    outline: 2px solid hsl(var(--primary));
+    outline-offset: 2px;
+  }
+  
+  /* Better scroll behavior */
+  .overflow-x-auto {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--border)) transparent;
+  }
+  
+  .overflow-x-auto::-webkit-scrollbar {
+    height: 6px;
+  }
+  
+  .overflow-x-auto::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  .overflow-x-auto::-webkit-scrollbar-thumb {
+    background-color: hsl(var(--border));
+    border-radius: 3px;
+  }
+}
+
+/* Voice recognition animation */
+@keyframes voice-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+}
+
+.voice-recording {
+  animation: voice-pulse 1.5s ease-in-out infinite;
+}
+
+/* Language selector improvements */
+.language-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 0.5rem;
+}
+
+@media (max-width: 640px) {
+  .language-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile-friendly table styles */
+@media (max-width: 768px) {
+  .table-mobile {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  
+  .table-mobile td,
+  .table-mobile th {
+    padding: 0.5rem;
+    font-size: 0.75rem;
+  }
+  
+  /* Stack cards on mobile */
+  .card-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  /* Better button spacing */
+  .button-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .button-group button {
+    width: 100%;
+  }
+}
+
+@media (min-width: 768px) {
+  .card-stack {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .button-group {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+  }
+  
+  .button-group button {
+    width: auto;
+  }
+}
+
+:root {
+  --background: 210 40% 98%; /* #F8FAFC - Very light blue-gray */
+  --foreground: 214 31% 31%; /* #475569 - Dark blue-gray */
+  --muted: 210 40% 96%; /* #F1F5F9 - Very light blue */
+  --muted-foreground: 215 16% 47%; /* #64748B - Medium blue-gray */
+  --popover: 0 0% 100%; /* #FFFFFF */
+  --popover-foreground: 214 31% 31%; /* #475569 */
+  --card: 0 0% 100%; /* #FFFFFF */
+  --card-foreground: 214 31% 31%; /* #475569 */
+  --border: 214 32% 91%; /* #E2E8F0 - Light blue-gray */
+  --input: 214 32% 91%; /* #E2E8F0 */
+  --primary: 152 100% 13%; /* #0F4037 - Dark green */
+  --primary-foreground: 0 0% 100%; /* #FFFFFF - High contrast white text */
+  --secondary: 152 45% 20%; /* #1A5D52 - Darker green for better contrast */
+  --secondary-foreground: 0 0% 100%; /* #FFFFFF */
+  --accent: 152 40% 25%; /* #266B5C - Medium green with better contrast */
+  --accent-foreground: 0 0% 100%; /* #FFFFFF */
+  --destructive: 0 72% 51%; /* #C62828 */
+  --destructive-foreground: 60 9.1% 97.8%;
+  --ring: 152 100% 13%; /* #0F4037 - Dark green for focus rings */
+  --radius: 0.5rem;
+  --success: 152 100% 13%; /* #0F4037 - Use green for success */
+  --warning: 45 100% 52%; /* #F57F17 */
+}
+
+.dark {
+  --background: 240 10% 3.9%;
+  --foreground: 0 0% 98%;
+  --muted: 240 3.7% 15.9%;
+  --muted-foreground: 240 5% 64.9%;
+  --popover: 240 10% 3.9%;
+  --popover-foreground: 0 0% 98%;
+  --card: 240 10% 3.9%;
+  --card-foreground: 0 0% 98%;
+  --border: 240 3.7% 15.9%;
+  --input: 240 3.7% 15.9%;
+  --primary: 152 100% 13%; /* #0F4037 - Dark green */
+  --primary-foreground: 0 0% 100%;
+  --secondary: 152 60% 30%; /* Lighter green for dark mode */
+  --secondary-foreground: 0 0% 100%;
+  --accent: 152 40% 25%; /* Medium green for accents */
+  --accent-foreground: 0 0% 100%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 0% 98%;
+  --ring: 152 100% 13%; /* #0F4037 - Dark green for focus rings */
+  --success: 152 100% 13%; /* #0F4037 - Dark green for success */
+  --warning: 45 100% 52%;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+    font-family: 'Roboto', sans-serif;
+  }
+}
+
+/* Custom utility classes with improved accessibility */
+.text-primary {
+  color: hsl(var(--primary));
+}
+
+.text-secondary {
+  color: hsl(var(--secondary));
+}
+
+.text-success {
+  color: hsl(var(--success));
+}
+
+.text-warning {
+  color: hsl(var(--warning));
+}
+
+.bg-primary {
+  background-color: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+}
+
+.bg-secondary {
+  background-color: hsl(var(--secondary));
+  color: hsl(var(--secondary-foreground));
+}
+
+/* High contrast button styles for accessibility */
+.btn-primary {
+  background-color: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary:hover {
+  background-color: hsl(152 100% 15%); /* Slightly lighter on hover */
+  color: hsl(var(--primary-foreground));
+}
+
+.btn-secondary {
+  background-color: hsl(var(--secondary));
+  color: hsl(var(--secondary-foreground));
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.btn-secondary:hover {
+  background-color: hsl(152 45% 22%); /* Slightly lighter on hover */
+  color: hsl(var(--secondary-foreground));
+}
+
+.bg-success {
+  background-color: hsl(var(--success));
+}
+
+.bg-warning {
+  background-color: hsl(var(--warning));
+}
+
+/* Hover states */
+.hover\:bg-primary:hover {
+  background-color: hsl(152 100% 18%);
+}
+
+.hover\:bg-secondary:hover {
+  background-color: hsl(152 50% 30%);
+}
+
+.hover\:text-primary:hover {
+  color: hsl(152 100% 18%);
+}
+
+/* Focus states */
+.focus\:ring-primary:focus {
+  --tw-ring-color: hsl(var(--primary));
+}
+
+.focus\:border-primary:focus {
+  border-color: hsl(var(--primary));
+}
+
+/* Status colors */
+.status-draft {
+  @apply bg-gray-100 text-gray-800;
+}
+
+.status-under_review {
+  @apply bg-amber-100 text-amber-800;
+}
+
+.status-approved {
+  @apply bg-primary/10 text-primary;
+}
+
+/* Button variants using green theme */
+.btn-primary {
+  @apply bg-primary text-primary-foreground focus:ring-primary;
+}
+
+.btn-primary:hover {
+  background-color: hsl(152 100% 18%);
+}
+
+.btn-secondary {
+  @apply bg-secondary text-secondary-foreground focus:ring-secondary;
+}
+
+.btn-secondary:hover {
+  background-color: hsl(152 50% 30%);
+}
+
+.btn-success {
+  @apply bg-primary text-primary-foreground focus:ring-primary;
+}
+
+.btn-success:hover {
+  background-color: hsl(152 100% 18%);
+}
+
+/* Loading spinner using green theme */
+.spinner-primary {
+  border-color: hsl(var(--primary));
+  border-top-color: transparent;
+}
+
+.spinner-light {
+  border-color: rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+}
+
+/* Risk level colors */
+.risk-low {
+  @apply bg-primary/10 text-primary;
+}
+
+.risk-medium {
+  @apply bg-yellow-100 text-yellow-800;
+}
+
+.risk-high {
+  @apply bg-orange-100 text-orange-800;
+}
+
+.risk-extreme {
+  @apply bg-red-100 text-red-800;
+}
+
+/* Animation classes */
+.fade-in {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Document protection styling */
+.protected-document {
+  position: relative;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.protected-document::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: transparent;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Custom scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: hsl(var(--muted));
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: hsl(var(--border));
+  border-radius: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground));
+}
+
+/* Activity selection styles */
+.activity-checkbox-group {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1;
+}
+
+.activity-checkbox-item {
+  @apply flex items-start space-x-2 p-2 rounded-md hover:bg-gray-50 transition-all duration-200 cursor-pointer;
+  @apply border border-transparent hover:border-gray-200;
+}
+
+.activity-checkbox-item:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.activity-checkbox-item.selected {
+  @apply bg-blue-50 border-blue-200;
+}
+
+.activity-category-header {
+  @apply flex items-center justify-between py-2 px-1 border-b border-gray-100;
+}
+
+.selected-activities-summary {
+  @apply mt-4 p-3 bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-lg;
+}
+
+/* Compact form styling */
+.form-section {
+  @apply space-y-4;
+}
+
+.form-row {
+  @apply grid grid-cols-1 md:grid-cols-2 gap-4;
+}
+
+.form-group {
+  @apply space-y-2;
+}
+
+.form-label {
+  @apply flex items-center text-sm font-medium text-gray-700;
+}
+
+.form-label-icon {
+  @apply mr-2 h-4 w-4 text-gray-500;
+}
+
+/* Collapsible categories */
+.category-content {
+  @apply transition-all duration-300 ease-in-out;
+}
+
+.category-content.collapsed {
+  @apply max-h-0 overflow-hidden;
+}
+
+.category-content.expanded {
+  @apply max-h-none;
+}
+
+/* Badge enhancements */
+.activity-badge {
+  @apply inline-flex items-center px-2 py-1 rounded-full text-xs font-medium;
+  @apply bg-blue-100 text-blue-800 hover:bg-blue-200 transition-colors;
+}
+
+/* Button enhancements */
+.select-all-btn {
+  @apply text-xs px-2 py-1 rounded-md font-medium transition-all;
+  @apply text-blue-600 hover:text-blue-800 hover:bg-blue-50;
+}
+
+/* Responsive grid improvements */
+@media (max-width: 768px) {
+  .activity-checkbox-group {
+    @apply grid-cols-1;
+  }
+  
+  .form-row {
+    @apply grid-cols-1;
+  }
+}
+
+/* Accessibility Features */
+
+/* Screen reader only text */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* High contrast mode */
+.high-contrast {
+  --background: 0 0% 100%;
+  --foreground: 0 0% 0%;
+  --card: 0 0% 100%;
+  --card-foreground: 0 0% 0%;
+  --border: 0 0% 0%;
+  --input: 0 0% 100%;
+  --ring: 0 0% 0%;
+  --primary: 0 0% 0%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 0 0% 90%;
+  --secondary-foreground: 0 0% 0%;
+}
+
+.high-contrast.dark {
+  --background: 0 0% 0%;
+  --foreground: 0 0% 100%;
+  --card: 0 0% 0%;
+  --card-foreground: 0 0% 100%;
+  --border: 0 0% 100%;
+  --input: 0 0% 0%;
+  --ring: 0 0% 100%;
+  --primary: 0 0% 100%;
+  --primary-foreground: 0 0% 0%;
+  --secondary: 0 0% 20%;
+  --secondary-foreground: 0 0% 100%;
+}
+
+/* Enhanced focus indicators */
+.enhanced-focus *:focus {
+  outline: 3px solid hsl(var(--primary));
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.enhanced-focus button:focus,
+.enhanced-focus [role="button"]:focus {
+  outline: 3px solid hsl(var(--primary));
+  outline-offset: 2px;
+  box-shadow: 0 0 0 6px hsla(var(--primary), 0.2);
+}
+
+/* Large click targets */
+.large-targets button,
+.large-targets [role="button"],
+.large-targets a,
+.large-targets input,
+.large-targets select {
+  min-width: 44px;
+  min-height: 44px;
+  padding: 12px 16px;
+}
+
+.large-targets .btn-sm {
+  min-width: 44px;
+  min-height: 44px;
+  padding: 12px 16px;
+}
+
+/* Reduced motion */
+.reduce-motion *,
+.reduce-motion *::before,
+.reduce-motion *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+
+/* Color blindness filters */
+.color-blind-protanopia {
+  filter: sepia(100%) saturate(0%) hue-rotate(90deg);
+}
+
+.color-blind-deuteranopia {
+  filter: sepia(100%) saturate(0%) hue-rotate(180deg);
+}
+
+.color-blind-tritanopia {
+  filter: sepia(100%) saturate(0%) hue-rotate(270deg);
+}
+
+/* Dynamic font sizing */
+:root {
+  --font-size-base: 16px;
+}
+
+body {
+  font-size: var(--font-size-base);
+}
+
+h1 { font-size: calc(var(--font-size-base) * 2); }
+h2 { font-size: calc(var(--font-size-base) * 1.75); }
+h3 { font-size: calc(var(--font-size-base) * 1.5); }
+h4 { font-size: calc(var(--font-size-base) * 1.25); }
+h5 { font-size: calc(var(--font-size-base) * 1.125); }
+h6 { font-size: var(--font-size-base); }
+
+.text-sm { font-size: calc(var(--font-size-base) * 0.875); }
+.text-xs { font-size: calc(var(--font-size-base) * 0.75); }
+.text-lg { font-size: calc(var(--font-size-base) * 1.125); }
+.text-xl { font-size: calc(var(--font-size-base) * 1.25); }
+
+/* Skip link for keyboard navigation */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  padding: 8px;
+  text-decoration: none;
+  border-radius: 4px;
+  z-index: 1000;
+}
+
+.skip-link:focus {
+  top: 6px;
+}
+
+/* Enhanced error states */
+[aria-invalid="true"] {
+  border-color: hsl(var(--destructive));
+  box-shadow: 0 0 0 2px hsla(var(--destructive), 0.2);
+}
+
+/* High contrast for interactive elements */
+.high-contrast button,
+.high-contrast [role="button"] {
+  border: 2px solid hsl(var(--foreground));
+}
+
+.high-contrast .text-muted-foreground {
+  color: hsl(var(--foreground));
+}
+
+/* Improved form labels */
+label {
+  cursor: pointer;
+}
+
+label:has(input[required])::after {
+  content: " *";
+  color: hsl(var(--destructive));
+}
+
+/* Focus management for keyboard navigation */
+.keyboard-nav *:focus {
+  outline: 2px solid hsl(var(--primary));
+  outline-offset: 2px;
+}
+
+/* Accessibility announcements */
+[aria-live] {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
